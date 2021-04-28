@@ -1,15 +1,22 @@
 <template>
     <div> 
-        <h1>Popular Books List</h1>
-        <div v-for='book in this.popularBooks' :key=book> 
-            <div> img: {{ book['imgSrc'] }} </div> 
-            <div v-if='showStock'> stock: {{ book['stock']}} </div>
-        </div>
+        <BookList 
+            v-bind:title='this.title'
+            v-bind:bookList='this.popularBooks'>
+        </BookList> 
     </div>
 </template>
 
 <script>
+import BookList from '../SharedModules/BookList'
+
 export default {
+    name: 'PopularBooksList',
+
+    components: {
+        BookList
+    },
+
     props:{
         showStock: {
             type: Boolean,
@@ -19,6 +26,7 @@ export default {
 
     data() {
         return {
+            title: "Popular Books",
             popularBooks: []
         }
     },
@@ -32,7 +40,6 @@ export default {
             fetch('http://127.0.0.1:5000/books/popular')
             .then(res => res.json())
             .then((data) => {
-                console.log(data)
                 var books = data['popular_books']
                 for(let i = 0; i < books.length; i++) {
                     let book = books[i]
@@ -42,7 +49,6 @@ export default {
                     popularBook['popularity'] = book['popularity']
                     this.popularBooks.push(popularBook)
                 }
-                console.log(this.popularBooks)
             })
             .catch(err => console.log(err.message))
         }
