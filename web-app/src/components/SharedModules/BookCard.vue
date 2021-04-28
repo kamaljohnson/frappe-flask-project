@@ -22,7 +22,10 @@ export default {
     box-shadow:  0px 0px 7px #e1e1e3, 0px 0px 7px #757575;
     border-radius:16px;
     background: white;
-    margin: 5px;
+    margin-left: 15px;
+    margin-right: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 #book-image {
     width: 150px;
