@@ -63,6 +63,7 @@ export default {
     margin-left: 10px;
     color: white;
     height: 100%;
+    width: 100%;
     font-size: 20px;
 }
 
