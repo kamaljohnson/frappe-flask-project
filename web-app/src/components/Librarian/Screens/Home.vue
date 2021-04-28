@@ -66,20 +66,20 @@ export default {
 
 <style> 
 #report-insight-container {
+    margin-left: 30px;
     margin-top: 55px;
     width: 100%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
 }
 #report-chart {
-    width: 50%;
-    margin-left: 30px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 #insight {
-    width: 50%;
     margin-right: 30px;
-    margin-left: 10px;
 }
 #top-container{
     margin-top: 0px;

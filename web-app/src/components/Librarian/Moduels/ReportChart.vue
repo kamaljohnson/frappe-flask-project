@@ -13,9 +13,10 @@
     margin-bottom: 10px;
 }
 #report-chart-box {
-    width: 730px;
     height: 350px;
+    width: 800px;
     background: gray;
     padding: 10px;
+    border-radius: 10px;
 }
 </style>

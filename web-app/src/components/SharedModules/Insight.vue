@@ -1,6 +1,6 @@
 <template>
-    <div id="report-container"> 
-        <div id="report-chart-box">
+    <div id="insight-container"> 
+        <div id="insight-chart-box">
             <table>
                 <tbody>
                     <tr v-for='(value, key) in insights' :key=key>
@@ -34,15 +34,13 @@ export default ({
 
 
 <style scoped>
-#title {
-    text-align: start;
-    margin-bottom: 10px;
-}
-#report-chart-box {
+#insight-chart-box {
     margin-top:55px;
     flex-wrap: wrap;
     background: rgb(24, 151, 255);
     padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 #insight-item {
     text-align: left;
