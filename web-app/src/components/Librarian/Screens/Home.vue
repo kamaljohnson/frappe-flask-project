@@ -47,36 +47,18 @@ export default {
     },
 
     mounted() {
-        fetch('http://127.0.0.1:5000/library/insight')
-        .then(res => res.json())
-        .then((data) => {
-            console.log(data)
-            this.insight = data['insight']
-        })
-        .catch(err => console.log(err.message))
+        this.fetchInsights()
     },
 
     methods: {
         fetchInsights: function() {
-            // this.insightAvaliable = false;
-            // fetch("http://127.0.0.1:5000/library/reports/all", 
-            // { 
-            //     "method": "GET",
-            // })
-            // .then(response => { 
-            //     if(response.ok){
-            //         return response.json()    
-            //     } else{
-            //         alert("Server returned " + response.status + " : " + response.statusText);
-            //     }                
-            // })
-            // .then(response => {
-            //     console.log("Body: " + response)
-            //     this.insightAvaliable = true;
-            // })
-            // .catch(err => {
-            //     console.log(err);
-            // });
+            fetch('http://127.0.0.1:5000/library/insight')
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+                this.insight = data['insight']
+            })
+            .catch(err => console.log(err.message))
         }
     }
 }
