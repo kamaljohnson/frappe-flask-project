@@ -2,7 +2,7 @@
     <div id='book-list-container'>
         <h2 id='book-list-title'> {{this.title}} </h2>
         <li id='book-list' v-for="(value, index) in this.bookList" :key="index">
-            <BookCard id='book-card'
+            <BookCard v-if="index <= this.limit" id='book-card'
                 v-bind:imgSrc='value.imgSrc'
                 v-bind:stock='value.stock'>
             </BookCard>
@@ -23,17 +23,20 @@ export default {
     props: {
         title:String,
         bookList:Array,
-    }
+        limit: {
+            type: Number,
+            default: 5
+        }
+    },
 
 }
 </script>
 
 <style>
 #book-list-container {
-    flex-wrap: wrap;
     display: flex;
-    align-content: left;
     margin-left: 30px;
+    flex-wrap: wrap;
 }
 #book-list-title {
     text-align: start;
@@ -44,7 +47,7 @@ export default {
     background: lightgray;
     list-style: none;
     padding: 10px;
-    display: inline-block;
+    justify-content: flex-start;
 }
 
 </style>

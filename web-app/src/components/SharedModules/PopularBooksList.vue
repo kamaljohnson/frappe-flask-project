@@ -2,7 +2,8 @@
     <div> 
         <BookList 
             v-bind:title='this.title'
-            v-bind:bookList='this.popularBooks'>
+            v-bind:bookList='this.popularBooks'
+            v-bind:limit='5'>
         </BookList> 
     </div>
 </template>
