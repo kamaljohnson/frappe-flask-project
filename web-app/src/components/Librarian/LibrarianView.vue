@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-      <Menu id="menu"/>
+      <Menu id="menu" v-bind:menuContents="this.menuContents" />
       <Home id="home" v-if="acticeScreen === 'Home'" />   
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
             {
                 'title': 'Profile',
                 'id': '1',
-                'children':[]
+                'children':[],
+                // 'onClick': this.showProfileScreen
             },
             {
                 'title': 'Books',
@@ -31,34 +32,40 @@ export default {
                     {
                         'title': 'Issue Book',
                         'id': '2.1',
-                        'children': []
+                        'children': [],
+                        // 'onClick': showIssueBookWindow
                     },
                     {
                         'title': 'Return Book',
                         'id': '2.2',
-                        'children': []
+                        'children': [],
+                        // 'onClick': showReturnBookWindow
                     },
                     {
                         'title': 'Create New',
                         'id': '2.3',
-                        'children': []
+                        'children': [],
+                        // 'onClick': showCreateBookWindow
                     },
                 ]
             },
             {
                 'title': 'Members',
                 'id': '3',
-                'children':[]
+                'children':[],
+                // 'onClick': showMembersScreen
             },
             {
                 'title': 'Notification',
                 'id': '4',
-                'children':[]
+                'children':[],
+                // 'onClick': showNotificationsScreen
             },
             {
                 'title': 'Log Out',
                 'id': '5',
-                'children':[]
+                'children':[],
+                // 'onClick': showLogoutPopup
             },
         ],
         acticeScreen: "Home",   // Screens : Home, Report, Books, Issued Books, Notifications, Profile, 

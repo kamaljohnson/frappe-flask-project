@@ -57,6 +57,7 @@ export default {
     height: 100%;
 }
 #load-more-button {
+    border: none;
     background: gray;
     text-align: center;
     padding: 8px;
