@@ -52,7 +52,7 @@ export default {
 
     methods: {
         fetchInsights: function() {
-            fetch('http://127.0.0.1:5000/library/insight')
+            fetch('https://blooming-basin-03878.herokuapp.com/library/insight')
             .then(res => res.json())
             .then((data) => {
                 console.log(data)

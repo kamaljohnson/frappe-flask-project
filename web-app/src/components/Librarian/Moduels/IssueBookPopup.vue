@@ -104,7 +104,7 @@ export default {
 
     methods: {
         findMember: function() {
-            fetch('http://127.0.0.1:5000/members/' + this.temp_member_id)
+            fetch('https://blooming-basin-03878.herokuapp.com/members/' + this.temp_member_id)
             .then(res => res.json())
             .then((data) => {
                 var member = data['member']
@@ -117,7 +117,7 @@ export default {
             .catch(err => console.log(err.message))
         },
         findBookInstance: function() {
-            fetch('http://127.0.0.1:5000/books/instances/' + this.temp_book_instance_id)
+            fetch('https://blooming-basin-03878.herokuapp.com/books/instances/' + this.temp_book_instance_id)
             .then(res => res.json())
             .then((data) => {
                 var bookInstance = data['book_instance']
@@ -141,7 +141,7 @@ export default {
                     issue_period: 30
                 })
             }
-            fetch('http://127.0.0.1:5000/transactions/issue_book', requestOptions)
+            fetch('https://blooming-basin-03878.herokuapp.com/transactions/issue_book', requestOptions)
             .then(res => res.json())
             .then((data) => {
                 var transaction = data['transaction']

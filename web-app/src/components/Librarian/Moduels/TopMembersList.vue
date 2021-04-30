@@ -38,7 +38,7 @@ export default {
 
     methods: {
         fetchTopMembers: function() {
-            fetch('http://127.0.0.1:5000/members/profitable')
+            fetch('https://blooming-basin-03878.herokuapp.com/members/profitable')
             .then(res => res.json())
             .then((data) => {
                 var members = data['members']

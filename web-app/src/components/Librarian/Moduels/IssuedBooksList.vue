@@ -39,7 +39,7 @@ export default {
 
     methods: {
         fetchIssuedBooks() {
-            fetch('http://127.0.0.1:5000/books/issued/limit/' + this.limit)
+            fetch('https://blooming-basin-03878.herokuapp.com/books/issued/limit/' + this.limit)
             .then(res => res.json())
             .then((data) => {
                 var books = data['issued_books']

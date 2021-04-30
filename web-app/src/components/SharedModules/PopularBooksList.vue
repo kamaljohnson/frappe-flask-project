@@ -38,7 +38,7 @@ export default {
 
     methods: {
         fetchPopularBooks: function() {
-            fetch('http://127.0.0.1:5000/books/popular')
+            fetch('https://blooming-basin-03878.herokuapp.com/books/popular')
             .then(res => res.json())
             .then((data) => {
                 var books = data['popular_books']
