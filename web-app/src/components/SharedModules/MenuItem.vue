@@ -2,9 +2,11 @@
     <div id="menu-item-container">
         <div 
             id="menu-item-title"
+            @click="this.onClick()"
             :style="{
                 'margin-left': `${this.depth * 20}px`,
                 'font-size': `${18 - ((this.depth -1) * 3)}px`,
+                'cursor': 'pointer'
             }"
         >
             <h3> {{ this.menuItem.title }} </h3>
@@ -29,14 +31,22 @@ export default ({
         depth: {
             type: Number,
             default: 1
-        }
+        },
     },
 
     data() {
         return {
 
         }
-    }
+    },
+
+    methods: {
+        onClick: function() {
+            if(this.menuItem.clickable) {
+                this.menuItem.onClick()
+            }
+        }
+    },
 })
 </script>
 

@@ -22,47 +22,56 @@ export default {
             {
                 'title': 'Profile',
                 'children':[],
-                // 'onClick': this.showProfileScreen
+                'clickable': true,
+                'onClick': this.showProfileScreen
             },
             {
                 'title': 'Books',
+                'clickable': false,
                 'children':[ 
                     {
                         'title': 'Issue Book',
                         'children': [],
-                        // 'onClick': showIssueBookWindow
+                        'clickable': true,
+                        'onClick': this.showIssueBookWindow
                     },
                     {
                         'title': 'Return Book',
                         'children': [],
-                        // 'onClick': showReturnBookWindow
+                        'clickable': true,
+                        'onClick': this.showReturnBookWindow
                     },
                     {
                         'title': 'Create New',
                         'children': [],
-                        // 'onClick': showCreateBookWindow
+                        'clickable': true,
+                        'onClick': this.showCreateBookWindow
                     },
-                ]
+                ],
             },
             {
                 'title': 'Members',
                 'children':[],
-                // 'onClick': showMembersScreen
+                'clickable': true,
+                'onClick': this.showMembersScreen
             },
                         {
                 'title': 'Reports',
                 'children':[],
-                // 'onClick': showMembersScreen
+                'clickable': true,
+                'onClick': this.showReportScreen
             },
             {
                 'title': 'Notification',
                 'children':[],
-                // 'onClick': showNotificationsScreen
+                'clickable': true,
+                'onClick': this.showNotificationsScreen
             },
             {
                 'title': 'Log Out',
                 'children':[],
-                // 'onClick': showLogoutPopup
+                'clickable': true,
+                'onClick': this.showLogoutPopup
             },
         ],
         acticeScreen: "Home",   // Screens : Home, Report, Books, Issued Books, Notifications, Profile, 
@@ -72,34 +81,38 @@ export default {
     methods: {
         // Show screens
         showProfileScreen(){
-
+            console.log("clicked profile")
         },
         showMembersScreen(){
+            console.log("clicked members")
             
         },
         showNotificationsScreen(){
+            console.log("clicked notifications")
             
         },
         showReportScreen(){
-
-        },
-        showIssuedBooksScreen(){
+            console.log("clicked reports")
 
         },
 
         // Show windows 
         showIssueBookWindow(){
+            console.log("clicked issue book")
             
         },
         showReturnBookWindow(){
+            console.log("clicked return book")
             
         },
         showCreateBookWindow(){
+            console.log("clicked create book")
         
         },
 
         // Show pop-up
         showLogoutPopup(){
+            console.log("clicked logout")
 
         }
     }
