@@ -1,19 +1,26 @@
 <template>
   <div id="container">
       <Menu id="menu" v-bind:menuContents="this.menuContents" />
-      <Home id="home" v-if="acticeScreen === 'Home'" />   
+      <Home id="home" v-if="acticeScreen === 'Home'" /> 
+      <IssueBookPopup v-if="showIssueBookPopup" />  
+      <ReturnBookPopup v-if="showReturnBookPopup" />  
   </div>
 </template>
 
 <script>
 import Home from "./Screens/Home"
 import Menu from "../SharedModules/Menu"
+import IssueBookPopup from "./Moduels/IssueBookPopup"
+import ReturnBookPopup from "./Moduels/ReturnBookPopup"
+
 
 export default {
   name: 'App',
   components: {
     Home,
     Menu,
+    IssueBookPopup,
+    ReturnBookPopup
   },
   
   data(){
@@ -75,6 +82,10 @@ export default {
             },
         ],
         acticeScreen: "Home",   // Screens : Home, Report, Books, Issued Books, Notifications, Profile, 
+        
+        showIssueBookPopup: false,
+        showReturnBookPopup: false,
+
     }
   },
 
@@ -98,12 +109,11 @@ export default {
 
         // Show windows 
         showIssueBookWindow(){
-            console.log("clicked issue book")
+            this.showIssueBookPopup = true;
             
         },
         showReturnBookWindow(){
-            console.log("clicked return book")
-            
+            this.showReturnBookPopup = true;            
         },
         showCreateBookWindow(){
             console.log("clicked create book")
