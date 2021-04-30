@@ -5,7 +5,9 @@
       <IssueBookPopup 
         v-if="showIssueBookPopup" 
         v-bind:togglePopup="toggleIssueBookPopup"/>  
-      <ReturnBookPopup v-if="showReturnBookPopup" />  
+      <ReturnBookPopup 
+        v-if="showReturnBookPopup"
+        v-bind:togglePopup="toggleReturnBookPopup"/>
   </div>
 </template>
 
@@ -48,7 +50,7 @@ export default {
                         'title': 'Return Book',
                         'children': [],
                         'clickable': true,
-                        'onClick': this.showReturnBookWindow
+                        'onClick': this.toggleReturnBookPopup
                     },
                     {
                         'title': 'Create New',
@@ -114,8 +116,8 @@ export default {
             this.showIssueBookPopup = !this.showIssueBookPopup;
             
         },
-        showReturnBookWindow(){
-            this.showReturnBookPopup = true;            
+        toggleReturnBookPopup(){
+            this.showReturnBookPopup = !this.showReturnBookPopup;            
         },
         showCreateBookWindow(){
             console.log("clicked create book")

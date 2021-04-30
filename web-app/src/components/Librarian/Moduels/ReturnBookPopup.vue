@@ -63,8 +63,8 @@
             </div>
             <button 
                 id="issue-book-button" 
-                :disabled="bookInstance.isAvailable === '-' || !bookInstance.isAvailable"
-                @click="issueBook">
+                :disabled="bookInstance.isAvailable"
+                @click="returnBook">
                     Return Book
                 </button>
         </div>
@@ -127,6 +127,12 @@ export default {
             .then(res => res.json())
             .then((data) => {
                 var bookInstance = data['book_instance']
+
+                if(bookInstance["is_available"]) {
+                    this.$toast.error(`Book not yet issued !`);
+                    return
+                }
+
                 this.bookInstance["id"] = bookInstance['id']
                 this.bookInstance["title"] = bookInstance['book_detail']["name"].slice(0, 30)
                 this.bookInstance["author"] = bookInstance['book_detail']["author"]
@@ -150,24 +156,15 @@ export default {
             })
             .catch(err => console.log(err.message))
         },
-        issueBook: function() {
-            console.log("issueing book")
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    book_instance_id: this.bookInstance.id,
-                    member_id: this.member.id,
-                    issue_period: 30
-                })
-            }
-            fetch('http://127.0.0.1:5000/transactions/issue_book', requestOptions)
+        returnBook: function() {
+            console.log("returning book")
+            fetch('http://127.0.0.1:5000/transactions/return_book/' + this.bookInstance.id)
             .then(res => res.json())
             .then((data) => {
                 var transaction = data['transaction']
                 var returned = transaction['returned']
-                if(!returned) {
-                    this.$toast.success(`Book issued successfully`);
+                if(returned) {
+                    this.$toast.success(`Book returned successfully`);
                     this.togglePopup()
                 }
 
