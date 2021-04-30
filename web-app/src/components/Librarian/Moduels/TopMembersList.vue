@@ -4,6 +4,9 @@
         <table id="member-list-table">
             <tbody>
                 <tr id='member-slip' v-for="(value, index) in this.topMembersList.slice(0, this.limit)" :key="index" >
+                    <td id='member-slip-item'>
+                        <img id="profile-pic" :src="value.profilePic"/>
+                    </td>
                     <td id='member-slip-item'> {{value.username}} </td>
                     <td id='member-slip-item'>  ₹ {{value.totalPaid + value.unbilled}} </td>
                     <td id='member-slip-item'> {{value.booksTaken}} </td>
@@ -43,6 +46,7 @@ export default {
                     let member = members[i]
                     var topMember = {}
                     topMember['username'] = member['username']
+                    topMember['profilePic'] = member['profile_pic']
                     topMember['totalPaid'] = member['total_paid']
                     topMember['unbilled'] = member['unbilled']
                     topMember['booksTaken'] = member['books_taken']
@@ -75,6 +79,11 @@ export default {
 }
 #member-slip-item {
     font-size: 25px;
-    padding: 25px;
+    padding: 5px;
+}
+#profile-pic {
+    height: 60px;
+    border-radius:30px;
+    padding-top: 8px;
 }
 </style>
