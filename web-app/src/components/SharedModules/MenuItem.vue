@@ -32,11 +32,6 @@ export default ({
         }
     },
 
-    mounted() {
-        console.log("MENU ITEMS")
-        console.log(this.menuItem)
-    },
-
     data() {
         return {
 

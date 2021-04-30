@@ -11,7 +11,7 @@ export default {
 
     props: {
         imgSrc: String,
-        stock: String,
+        stock: Number,
     }
 
 }

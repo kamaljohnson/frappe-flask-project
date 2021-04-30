@@ -39,7 +39,6 @@ export default {
             .then(res => res.json())
             .then((data) => {
                 var members = data['members']
-                console.log(members)
                 for(let i = 0; i < members.length; i++) {
                     let member = members[i]
                     var topMember = {}

@@ -42,7 +42,6 @@ export default {
             .then(res => res.json())
             .then((data) => {
                 var books = data['issued_books']
-                console.log(books)
                 for(let i = 0; i < books.length; i++) {
                     let book = books[i]
                     var issuedBook = {}
