@@ -70,9 +70,9 @@
 </template>
 
 <script>
+
 export default {
     setup() {
-        
     },
 
     props: {
@@ -147,6 +147,7 @@ export default {
                 var transaction = data['transaction']
                 var returned = transaction['returned']
                 if(!returned) {
+                    this.$toast.success(`Book issued successfully`);
                     this.togglePopup()
                 }
 
