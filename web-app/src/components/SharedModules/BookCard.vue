@@ -8,8 +8,8 @@
         </div>
         <div 
             id='member-icon' 
-            v-if="this.member_profile_pic_src != ''">
-            {{this.stock}} 
+            v-if="this.memberId != ''">
+            <img id="member-icon-img" :src="this.memberProfilePic"/>
         </div>
         
     </div>
@@ -21,7 +21,7 @@ export default {
 
     props: {
         imgSrc: String,
-        member_profile_pic_src: {
+        memberId: {
             type: String,
             default: ''
         },
@@ -29,7 +29,31 @@ export default {
             type: Number,
             default: -1
         },
-    }
+    },
+
+    data() {
+        return {
+            memberProfilePic: ""
+        }
+    },
+
+    mounted() {
+        if(this.memberId != "") {
+            this.fetchMember()
+        }
+    },
+
+    methods: {
+        fetchMember: function() {
+            fetch('http://127.0.0.1:5000/members/' + this.memberId)
+            .then(res => res.json())
+            .then((data) => {
+                var member = data['member']
+                this.memberProfilePic = member['profile_pic']
+            })
+            .catch(err => console.log(err.message))
+        }
+    },
 
 }
 </script>
@@ -55,7 +79,7 @@ export default {
     bottom: 10px;
     right: 6px;
     width: 27px;
-    background: rgb(255, 153, 0);
+    background: rgb(24, 151, 255);
     color: rgb(255, 255, 255);
     font-weight:bolder;
     font-size: 25px;
@@ -63,16 +87,13 @@ export default {
     border-radius: 25px;
 }
 
-#member-icon {
+#member-icon-img {
     position:absolute;
     bottom: 10px;
     right: 6px;
-    width: 27px;
-    background: rgb(255, 153, 0);
-    color: rgb(255, 255, 255);
-    font-weight:bolder;
-    font-size: 25px;
-    padding: 10px;
-    border-radius: 25px;
+    height: 70px;
+    border-radius: 35px;
+    background: rgb(255, 255, 255);
+    padding: 4px;
 }
 </style>

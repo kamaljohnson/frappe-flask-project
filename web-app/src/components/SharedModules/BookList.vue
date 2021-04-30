@@ -1,10 +1,13 @@
 <template>
     <div id='book-list-container'>
         <h2 id='book-list-title'> {{this.title}} </h2>
-        <li id='book-list' v-for="(value, index) in this.bookList" :key="index">
-            <BookCard v-if="index < this.limit" id='book-card'
+        <li id='book-list' 
+            v-for="(value, index) in this.bookList" :key="index">
+            <BookCard id='book-card'
+                v-if="index < this.limit" 
                 v-bind:imgSrc='value.imgSrc'
-                v-bind:stock='value.stock'>
+                v-bind:stock='value.stock'
+                v-bind:memberId='value.memberId'>
             </BookCard>
             <div id="end-card-container" v-if="index === this.limit">
                 <button id="load-more-button"> 

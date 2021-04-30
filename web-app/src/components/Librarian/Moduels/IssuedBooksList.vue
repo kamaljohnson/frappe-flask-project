@@ -3,7 +3,7 @@
         <BookList 
             v-bind:title='this.title'
             v-bind:bookList='this.issuedBooks'
-            v-bind:limit='7'>
+            v-bind:limit='this.limit - 1'>
         </BookList> 
     </div>
 </template>
@@ -28,7 +28,8 @@ export default {
     data() {
         return {
             title: "Issued Books",
-            issuedBooks: []
+            issuedBooks: [],
+            limit: 8
         }
     },
     
@@ -37,20 +38,28 @@ export default {
     },
 
     methods: {
-        fetchIssuedBooks: function() {
-            fetch('http://127.0.0.1:5000/books/issued/all')
+        fetchIssuedBooks() {
+            fetch('http://127.0.0.1:5000/books/issued/limit/' + this.limit)
             .then(res => res.json())
             .then((data) => {
                 var books = data['issued_books']
                 for(let i = 0; i < books.length; i++) {
                     let book = books[i]
                     var issuedBook = {}
+
                     issuedBook['imgSrc'] = book['book_detail']['img_src']
+                    
+                    let lastTransaction = book['transactions'].slice(-1)[0]
+                    let memberId = lastTransaction["member_id"]
+
+                    issuedBook["memberId"] = memberId
+                    
                     this.issuedBooks.push(issuedBook)
                 }
             })
             .catch(err => console.log(err.message))
-        }
+
+        },
     },    
 }
 </script>
