@@ -38,10 +38,10 @@ export default {
         return {
             username: 'Kamal',
             insight: {
-                'total_books': 0,
-                'books_issued': 0,
-                'members': 0,
-                'total_earnings': 0
+                'Total Books': 0,
+                'Books Issued': 0,
+                'Members': 0,
+                'Total Earnings': 0
             },
         }
     },
@@ -56,7 +56,10 @@ export default {
             .then(res => res.json())
             .then((data) => {
                 console.log(data)
-                this.insight = data['insight']
+                this.insight['Total Books'] = data['insight']['total_books']
+                this.insight['Books Issued'] = data['insight']['books_issued']
+                this.insight['Members'] = data['insight']['members']
+                this.insight['Total Earnings'] = data['insight']['total_earnings']
             })
             .catch(err => console.log(err.message))
         }
