@@ -21,29 +21,24 @@ export default {
         menuContents: [
             {
                 'title': 'Profile',
-                'id': '1',
                 'children':[],
                 // 'onClick': this.showProfileScreen
             },
             {
                 'title': 'Books',
-                'id': '2',
                 'children':[ 
                     {
                         'title': 'Issue Book',
-                        'id': '2.1',
                         'children': [],
                         // 'onClick': showIssueBookWindow
                     },
                     {
                         'title': 'Return Book',
-                        'id': '2.2',
                         'children': [],
                         // 'onClick': showReturnBookWindow
                     },
                     {
                         'title': 'Create New',
-                        'id': '2.3',
                         'children': [],
                         // 'onClick': showCreateBookWindow
                     },
@@ -51,19 +46,21 @@ export default {
             },
             {
                 'title': 'Members',
-                'id': '3',
+                'children':[],
+                // 'onClick': showMembersScreen
+            },
+                        {
+                'title': 'Reports',
                 'children':[],
                 // 'onClick': showMembersScreen
             },
             {
                 'title': 'Notification',
-                'id': '4',
                 'children':[],
                 // 'onClick': showNotificationsScreen
             },
             {
                 'title': 'Log Out',
-                'id': '5',
                 'children':[],
                 // 'onClick': showLogoutPopup
             },
