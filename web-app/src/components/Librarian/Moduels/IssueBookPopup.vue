@@ -61,7 +61,8 @@
             </div>
             <button 
                 id="issue-book-button" 
-                :disabled="bookInstance.isAvailable === '-' || !bookInstance.isAvailable">
+                :disabled="bookInstance.isAvailable === '-' || !bookInstance.isAvailable"
+                @click="issueBook">
                     Issue Book
                 </button>
         </div>
@@ -129,6 +130,29 @@ export default {
             })
             .catch(err => console.log(err.message))
         },
+        issueBook: function() {
+            console.log("issueing book")
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    book_instance_id: this.bookInstance.id,
+                    member_id: this.member.id,
+                    issue_period: 30
+                })
+            }
+            fetch('http://127.0.0.1:5000/transactions/issue_book', requestOptions)
+            .then(res => res.json())
+            .then((data) => {
+                var transaction = data['transaction']
+                var returned = transaction['returned']
+                if(!returned) {
+                    this.togglePopup()
+                }
+
+            })
+            .catch(err => console.log(err.message))
+        }
     },
 }
 </script>
