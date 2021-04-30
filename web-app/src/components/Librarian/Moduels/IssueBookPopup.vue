@@ -5,44 +5,42 @@
             <div id="member-info-container"> 
                 <div id="memer-id-input">
                     <label for="memberId">Member </label>
-                    <input type="text" id="midInput" name="memberId">
-                    <button id="get-button"> Find Member </button> <br/>
+                    <input v-model="member.id"/>
+                    <button id="get-button" @click="findMember"> Find Member </button> <br/>
                 </div>
                 <div id="member-details"> 
-                    <img id="member-profile-pic" :src='member_profile_pic_src'>
+                    <img id="member-profile-pic" :src='member.profilePic'>
                     <div id="info-keys"> 
                         <div> username </div>
                         <div> email </div>
                         <div> unbilled </div>
-                        <div> total paid </div>
                     </div>
                     <div id="info-values"> 
-                        <div> kamaljohnson </div>
-                        <div> kamaljohnson@gmail.com </div>
-                        <div> 100 Rs </div>
-                        <div> 150 Rs </div>
+                        <div> {{member.username}} </div>
+                        <div> {{member.email}} </div>
+                        <div> {{member.unbilled}} </div>
                     </div>
                 </div>
             </div>
             <div id="book-info-container"> 
                 <div id="book-instance-id-input">
                     <label for="bookInstanceId">Book instance </label>
-                    <input type="text" id="bidInput" name="bookInstanceId">
-                    <button id="get-button"> Find Book </button> <br/>
+                    <input v-model="bookInstance.id"/>
+                    <button id="get-button" @click="findBookInstance"> Find Book </button> <br/>
                 </div>
                 <div id="book-details"> 
-                    <img id="book-pic" :src='book_pic_src'>
+                    <img id="book-pic" :src='bookInstance.pic'>
                     <div id="info-keys"> 
                         <div> title </div>
                         <div> author </div>
                         <div> base fees </div>
-                        <div> stock </div>
+                        <div> availability </div>
                     </div>
                     <div id="info-values"> 
-                        <div> Sapiens </div>
-                        <div> Yuval Noah Harrari </div>
-                        <div> 60 Rs </div>
-                        <div> 10 </div>
+                        <div> {{bookInstance.title}} </div>
+                        <div> {{bookInstance.author}} </div>
+                        <div> {{bookInstance.baseFees}} </div>
+                        <div> {{bookInstance.isAvailable}} </div>
                     </div>
                 </div>
             </div>
@@ -59,8 +57,49 @@ export default {
 
     data() {
         return {
-            member_profile_pic_src: "https://i.pravatar.cc/150",
-            book_pic_src: "https://picsum.photos/200/300",
+            member: {
+                "id": "",
+                "username": "",
+                "email": "",
+                "unbilled": "",
+                "profilePic": "",
+            },
+            bookInstance: {
+                "id": "",
+                "title": "",
+                "author": "",
+                "baseFees": "",
+                "pic": "",
+                "isAvailable": "",
+            },
+        }
+    },
+
+    methods: {
+        findMember: function() {
+            fetch('http://127.0.0.1:5000/members/' + this.member.id)
+            .then(res => res.json())
+            .then((data) => {
+                var member = data['member']
+                this.member["username"] = member["username"]
+                this.member["email"] = member["email"]
+                this.member["unbilled"] = "₹ " + member["unbilled"]
+                this.member["profilePic"] = member["profile_pic"]
+            })
+            .catch(err => console.log(err.message))
+        },
+        findBookInstance: function() {
+            fetch('http://127.0.0.1:5000/books/instances/' + this.bookInstance.id)
+            .then(res => res.json())
+            .then((data) => {
+                var bookInstance = data['book_instance']
+                this.bookInstance["title"] = bookInstance['book_detail']["name"].slice(0, 30)
+                this.bookInstance["author"] = bookInstance['book_detail']["author"]
+                this.bookInstance["baseFees"] = "₹ " + bookInstance['book_detail']["base_fees"]
+                this.bookInstance["pic"] = bookInstance['book_detail']["img_src"]
+                this.bookInstance["isAvailable"] = bookInstance["is_available"]
+            })
+            .catch(err => console.log(err.message))
         }
     },
 }
