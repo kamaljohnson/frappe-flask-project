@@ -2,6 +2,7 @@
     <div id="popup">
         <div id="popup-inner">
             <h2 id="title"> Issue Book </h2>
+            <button id="close-window-button" @click="togglePopup()"> X </button>
             <div id="member-info-container"> 
                 <div id="memer-id-input">
                     <label for="memberId">Member </label>
@@ -73,6 +74,10 @@ export default {
         
     },
 
+    props: {
+        togglePopup: Function
+    },
+
     data() {
         return {
             temp_member_id: "",
@@ -123,7 +128,7 @@ export default {
                 this.bookInstance["isAvailable"] = bookInstance["is_available"]
             })
             .catch(err => console.log(err.message))
-        }
+        },
     },
 }
 </script>
@@ -253,5 +258,25 @@ export default {
     background: rgb(1, 124, 224);
 }
 
+#close-window-button {
+    position: relative;
+    float: right;
+    background: rgb(253, 65, 65);
+	color: white;
+    top: -75px;
+    border: none;
+    right: -5px;
+    font-size: 15px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#close-window-button:hover {
+    background: rgb(243, 25, 25);
+    cursor: pointer;
+}
 
 </style>

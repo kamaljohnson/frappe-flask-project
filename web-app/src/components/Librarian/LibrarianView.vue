@@ -2,7 +2,9 @@
   <div id="container">
       <Menu id="menu" v-bind:menuContents="this.menuContents" />
       <Home id="home" v-if="acticeScreen === 'Home'" /> 
-      <IssueBookPopup v-if="showIssueBookPopup" />  
+      <IssueBookPopup 
+        v-if="showIssueBookPopup" 
+        v-bind:togglePopup="toggleIssueBookPopup"/>  
       <ReturnBookPopup v-if="showReturnBookPopup" />  
   </div>
 </template>
@@ -40,7 +42,7 @@ export default {
                         'title': 'Issue Book',
                         'children': [],
                         'clickable': true,
-                        'onClick': this.showIssueBookWindow
+                        'onClick': this.toggleIssueBookPopup
                     },
                     {
                         'title': 'Return Book',
@@ -108,8 +110,8 @@ export default {
         },
 
         // Show windows 
-        showIssueBookWindow(){
-            this.showIssueBookPopup = true;
+        toggleIssueBookPopup(){
+            this.showIssueBookPopup = !this.showIssueBookPopup;
             
         },
         showReturnBookWindow(){
