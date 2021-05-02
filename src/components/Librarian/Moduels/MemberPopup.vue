@@ -35,11 +35,25 @@
                     </div>
                 </div>
             </div>
-            <button 
-                id="create-member-button" 
-                @click="createMember">
-                    Create
+            <div v-if="create_new">
+                <button 
+                    id="create-member-button" 
+                    @click="createMember">
+                        Create
                 </button>
+            </div>
+            <div v-if="exsisting">
+                <button 
+                    id="update-member-button" 
+                    @click="updateMember">
+                        Update
+                </button>
+                <button
+                    id="delete-member-button" 
+                    @click="deleteMember">
+                        Delete
+                </button>
+            </div>
         </div>
     </div>    
 </template>
@@ -58,6 +72,9 @@ export default {
         return {
             temp_member_id: "",
 
+            create_new: true,
+            exsisting: false,
+
             member: {
                 "id": "-",
                 "username": "",
@@ -69,8 +86,8 @@ export default {
 
     methods: {
         findMember: function() {
-            this.find_member = true
-            this.new_member = false
+            this.exsisting = true
+            this.create_new = false
             fetch('https://blooming-basin-03878.herokuapp.com/members/' + this.temp_member_id)
             .then(res => res.json())
             .then((data) => {
@@ -84,7 +101,6 @@ export default {
             .catch(err => console.log(err.message))
         },
         createMember: function() {
-            console.log("creating member")
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -104,9 +120,41 @@ export default {
             })
             .catch(err => console.log(err.message))
         },
+        updateMember: function() {
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username: this.member.username,
+                    email: this.member.email,
+                })
+            }
+            fetch('https://blooming-basin-03878.herokuapp.com/members/edit/' + this.member.id, requestOptions)
+            .then(res => res.json())
+            .then((data) => {
+                var member = data['member']
+                console.log("member : " + member)
+                this.$toast.success(`Member updated successfully`);
+                this.togglePopup()
+
+            })
+            .catch(err => console.log(err.message))
+        },
+        deleteMember: function() {
+            fetch('https://blooming-basin-03878.herokuapp.com/members/delete/' + this.member.id)
+            .then(res => res.json())
+            .then((data) => {
+                var msg = data['member']
+                console.log("msg : " + msg)
+                this.$toast.success(`Member deleted successfully`);
+                this.togglePopup()
+
+            })
+            .catch(err => console.log(err.message))
+        },
         newMember: function() {
-            this.find_member = false
-            this.new_member = true
+            this.exsisting = false
+            this.create_new = true
             this.member.id = '-'
             this.member.username = ''
             this.member.email = ''
