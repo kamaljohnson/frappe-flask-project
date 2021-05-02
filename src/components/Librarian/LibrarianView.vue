@@ -1,13 +1,16 @@
 <template>
   <div id="container">
-      <Menu id="menu" v-bind:menuContents="this.menuContents" />
-      <Home id="home" v-if="acticeScreen === 'Home'" /> 
-      <IssueBookPopup 
+        <Menu id="menu" v-bind:menuContents="this.menuContents" />
+        <Home id="home" v-if="acticeScreen === 'Home'" /> 
+        <IssueBookPopup 
         v-if="showIssueBookPopup" 
         v-bind:togglePopup="toggleIssueBookPopup"/>  
-      <ReturnBookPopup 
-        v-if="showReturnBookPopup"
-        v-bind:togglePopup="toggleReturnBookPopup"/>
+        <ReturnBookPopup 
+            v-if="showReturnBookPopup"
+            v-bind:togglePopup="toggleReturnBookPopup"/>
+        <member-popup
+            v-if="showMemberPopup"
+            v-bind:togglePopup="toggleMemberPopup"/>
   </div>
 </template>
 
@@ -16,6 +19,7 @@ import Home from "./Screens/Home"
 import Menu from "../SharedModules/Menu"
 import IssueBookPopup from "./Moduels/IssueBookPopup"
 import ReturnBookPopup from "./Moduels/ReturnBookPopup"
+import MemberPopup from "./Moduels/MemberPopup"
 
 
 export default {
@@ -24,7 +28,8 @@ export default {
     Home,
     Menu,
     IssueBookPopup,
-    ReturnBookPopup
+    ReturnBookPopup,
+    MemberPopup
   },
   
   data(){
@@ -64,7 +69,7 @@ export default {
                 'title': 'Members',
                 'children':[],
                 'clickable': true,
-                'onClick': this.showMembersScreen
+                'onClick': this.toggleMemberPopup
             },
                         {
                 'title': 'Reports',
@@ -89,6 +94,7 @@ export default {
         
         showIssueBookPopup: false,
         showReturnBookPopup: false,
+        showMemberPopup: false,
 
     }
   },
@@ -98,8 +104,8 @@ export default {
         showProfileScreen(){
             console.log("clicked profile")
         },
-        showMembersScreen(){
-            console.log("clicked members")
+        toggleMemberPopup(){
+            this.showMemberPopup = !this.showMemberPopup
             
         },
         showNotificationsScreen(){
