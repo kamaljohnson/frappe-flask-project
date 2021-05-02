@@ -8,9 +8,12 @@
         <ReturnBookPopup 
             v-if="showReturnBookPopup"
             v-bind:togglePopup="toggleReturnBookPopup"/>
-        <member-popup
+        <MemberPopup
             v-if="showMemberPopup"
             v-bind:togglePopup="toggleMemberPopup"/>
+        <ReportsPopup
+            v-if="showReportsPopup"
+            v-bind:togglePopup="toggleReportsPopup"/>
   </div>
 </template>
 
@@ -20,6 +23,7 @@ import Menu from "../SharedModules/Menu"
 import IssueBookPopup from "./Moduels/IssueBookPopup"
 import ReturnBookPopup from "./Moduels/ReturnBookPopup"
 import MemberPopup from "./Moduels/MemberPopup"
+import ReportsPopup from "./Moduels/ReportsPopup"
 
 
 export default {
@@ -29,7 +33,8 @@ export default {
     Menu,
     IssueBookPopup,
     ReturnBookPopup,
-    MemberPopup
+    MemberPopup,
+    ReportsPopup
   },
   
   data(){
@@ -75,7 +80,7 @@ export default {
                 'title': 'Reports',
                 'children':[],
                 'clickable': true,
-                'onClick': this.showReportScreen
+                'onClick': this.toggleReportsPopup
             },
             {
                 'title': 'Notification',
@@ -95,6 +100,7 @@ export default {
         showIssueBookPopup: false,
         showReturnBookPopup: false,
         showMemberPopup: false,
+        showReportsPopup: false,
 
     }
   },
@@ -112,8 +118,8 @@ export default {
             console.log("clicked notifications")
             
         },
-        showReportScreen(){
-            console.log("clicked reports")
+        toggleReportsPopup(){
+            this.showReportsPopup = !this.showReportsPopup;
 
         },
 
