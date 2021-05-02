@@ -1,14 +1,28 @@
 <template>
     <div id="popup">
         <div id="popup-inner">
-            <button id="close-window-button" @click="togglePopup()"> X </button>
             <h2 id="title"> Report </h2>
+            <button id="close-window-button" @click="togglePopup()"> X </button>
             <button 
+                id="download-button"
                 @click="genereatPdf">
-                    Download
+                    DOWNLOAD PDF
             </button>
             <div ref="document">
-                Hello There
+                <table id="report-table">
+                    <tbody>
+                        <th> SNo </th>
+                        <th> Date </th>
+                        <th> Issued </th>
+                        <th> Earnings </th>
+                        <tr v-for="(report, index) in reports" :key="index">
+                            <td id="s_no"> {{index + 1}}</td>
+                            <td id="date"> {{report.date.slice(5, 11)}} </td>
+                            <td id="books_issued"> {{report.books_issued}} </td>
+                            <td id="earnings"> {{report.earnings}} </td>
+                        </tr>
+                    </tbody>
+            </table>
             </div>
         </div>
     </div>    
@@ -28,7 +42,7 @@ export default {
 
     data() {
         return {
-            reports: Array
+            reports: []
         }
     },
 
@@ -42,7 +56,6 @@ export default {
             fetch('https://blooming-basin-03878.herokuapp.com/library/reports/all')
             .then(res => res.json())
             .then((data) => {
-                console.log(data)
                 this.reports = data['reports']
                 console.log(this.reports)
             })
@@ -81,8 +94,8 @@ export default {
     height: 90%;
     width: 800px;
     background: #FFF;
-    border-radius: 10px;
     padding: 18px;
+    overflow: scroll;
 }
 
 #member-details {
@@ -221,6 +234,23 @@ export default {
     background: rgb(1, 124, 224);
 }
 
+#download-button {
+    position: relative;
+    float: left;
+    background: rgb(24, 151, 255);
+	color: white;
+    top: -50px;
+    border: none;
+    right: -100px;
+    font-size: 15px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
 #close-window-button {
     position: relative;
     float: right;
@@ -240,6 +270,12 @@ export default {
 #close-window-button:hover {
     background: rgb(243, 25, 25);
     cursor: pointer;
+}
+
+#report-table {
+    width: 100%;
+    text-align: left;
+    border-spacing: 20px;
 }
 
 </style>
