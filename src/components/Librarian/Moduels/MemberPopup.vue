@@ -116,7 +116,7 @@ export default {
             .then((data) => {
                 var member = data['member']
                 console.log("member : " + member)
-                this.$toast.success(`Member created successfully`);
+                this.$toast.success(`Member ` + member['id'] + ` created successfully`);
                 this.togglePopup()
 
             })
@@ -136,7 +136,7 @@ export default {
             .then((data) => {
                 var member = data['member']
                 console.log("member : " + member)
-                this.$toast.success(`Member updated successfully`);
+                this.$toast.success(`Member  `+ member['id'] + ` updated successfully`);
                 this.togglePopup()
 
             })
@@ -148,7 +148,7 @@ export default {
             .then((data) => {
                 var msg = data['member']
                 console.log("msg : " + msg)
-                this.$toast.success(`Member deleted successfully`);
+                this.$toast.success(`Member  `+ this.member.id + ` deleted successfully`);
                 this.togglePopup()
 
             })
