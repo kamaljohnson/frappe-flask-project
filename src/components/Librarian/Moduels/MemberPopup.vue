@@ -42,16 +42,18 @@
                         Create
                 </button>
             </div>
-            <div v-if="exsisting">
-                <button 
-                    id="update-member-button" 
-                    @click="updateMember">
-                        Update
-                </button>
+            <div 
+                id="update-delete-button-container" 
+                v-if="exsisting">
                 <button
                     id="delete-member-button" 
                     @click="deleteMember">
                         Delete
+                </button>
+                <button 
+                    id="update-member-button" 
+                    @click="updateMember">
+                        Update
                 </button>
             </div>
         </div>
@@ -277,6 +279,41 @@ export default {
     border-radius: 10px;
     background: rgb(24, 151, 255);
     justify-content: center;
+    cursor: pointer;
+}
+
+#update-delete-button-container {
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#update-member-button {
+    width: 50%;
+    height: 50px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+    background: rgb(24, 151, 255);
+    justify-content: left;
+    cursor: pointer;
+}
+
+#delete-member-button {
+    width: 50%;
+    height: 50px;
+    margin-right: 12px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+    background: rgb(255, 59, 24);
+    justify-content: right;
     cursor: pointer;
 }
 
