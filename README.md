@@ -5,11 +5,20 @@
 ## Home
 ![Home](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Home.jpg)
 
+## Download Reports
+![Download Reports](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Reports%20Download.JPG)
+
 ## Issue Book
 ![Issue Book](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Issue%20Book%201.jpg)
 
 ## Return Book
 ![Return Book](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Return%20Book%201.jpg)
+
+## Manage Books
+![Manage Books](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Manage%20Book.jpg)
+
+## Manage Members
+![Manage Members](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Manage%20Member.jpg)
 
 ## Notification
 ![Notification](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Issue%20Book%20Notificatoin.jpg)
