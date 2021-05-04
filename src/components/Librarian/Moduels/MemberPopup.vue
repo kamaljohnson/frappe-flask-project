@@ -146,7 +146,7 @@ export default {
             fetch('https://blooming-basin-03878.herokuapp.com/members/delete/' + this.member.id)
             .then(res => res.json())
             .then((data) => {
-                var msg = data['member']
+                var msg = data['msg']
                 console.log("msg : " + msg)
                 this.$toast.success(`Member  `+ this.member.id + ` deleted successfully`);
                 this.togglePopup()
