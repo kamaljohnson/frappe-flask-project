@@ -14,6 +14,9 @@
         <ReportsPopup
             v-if="showReportsPopup"
             v-bind:togglePopup="toggleReportsPopup"/>
+        <CreateBookPopup
+            v-if="showCreateBookPopup"
+            v-bind:togglePopup="toggelCreateBookPopup"/>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ import IssueBookPopup from "./Moduels/IssueBookPopup"
 import ReturnBookPopup from "./Moduels/ReturnBookPopup"
 import MemberPopup from "./Moduels/MemberPopup"
 import ReportsPopup from "./Moduels/ReportsPopup"
+import CreateBookPopup from "./Moduels/CreateBookPopup"
 
 
 export default {
@@ -34,7 +38,8 @@ export default {
     IssueBookPopup,
     ReturnBookPopup,
     MemberPopup,
-    ReportsPopup
+    ReportsPopup,
+    CreateBookPopup
   },
   
   data(){
@@ -63,10 +68,10 @@ export default {
                         'onClick': this.toggleReturnBookPopup
                     },
                     {
-                        'title': 'Create New',
+                        'title': 'Manage',
                         'children': [],
                         'clickable': true,
-                        'onClick': this.showCreateBookWindow
+                        'onClick': this.toggelCreateBookPopup
                     },
                 ],
             },
@@ -101,6 +106,7 @@ export default {
         showReturnBookPopup: false,
         showMemberPopup: false,
         showReportsPopup: false,
+        showCreateBookPopup: false,
 
     }
   },
@@ -131,9 +137,8 @@ export default {
         toggleReturnBookPopup(){
             this.showReturnBookPopup = !this.showReturnBookPopup;            
         },
-        showCreateBookWindow(){
-            console.log("clicked create book")
-        
+        toggelCreateBookPopup(){
+            this.showCreateBookPopup = !this.showCreateBookPopup;            
         },
 
         // Show pop-up
