@@ -94,12 +94,14 @@ export default {
     margin-top: 0px;
 }
 #search-box {
-    float: right;
-    width: 500px;
-    background: #F4F5F6;
+    position: absolute;
+    right: 0px;
+    border: 2px solid #868686;
+    border-radius: 20px;
     text-align: start;
     margin-right: 20px;
     margin-top: 0;
-    padding: 10px;
+    padding: 5px;
+    background: white;
 }
 </style>
