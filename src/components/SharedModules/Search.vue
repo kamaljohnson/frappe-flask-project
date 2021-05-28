@@ -178,7 +178,7 @@ export default {
                     filters: this.filters,
                 })
                 }
-                fetch('http://127.0.0.1:5000/search', requestOptions)
+                fetch('https://blooming-basin-03878.herokuapp.com/search', requestOptions)
                 .then(res => res.json())
                 .then((data) => {
                     console.log("data : " + data['result'])
