@@ -94,7 +94,7 @@ export default {
     margin-top: 0px;
 }
 #search-box {
-    z-index: 100;
+    z-index: 98;
     max-width: 600px;
     position: absolute;
     right: 0px;

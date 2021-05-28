@@ -1,5 +1,7 @@
 <template>
-    <div id='item'>
+    <div 
+        @click="toggleBookDetailsPopup"
+        id='item'>
         <img id='image' :src='this.imgSrc' />
         <table id="info"> 
             <tbody> 
@@ -14,10 +16,16 @@
                 </tr>
             </tbody>
         </table>
+        <CreateBookPopup
+            v-if="this.togglePopup"
+            v-bind:bookId="this.id"
+            v-bind:togglePopup="toggleBookDetailsPopup"/>
     </div>
 </template>
 
 <script>
+import CreateBookPopup from '../Librarian/Moduels/CreateBookPopup.vue'
+
 export default {
     name: 'BookSearchResultItem',
 
@@ -26,6 +34,22 @@ export default {
         id: Number,
         bookName: String,
         stock: Number
+    },
+
+    components: {
+        CreateBookPopup
+    },
+
+    data() {
+        return {
+            togglePopup: false
+        }
+    },
+
+    methods: {
+        toggleBookDetailsPopup() {
+            this.togglePopup = !this.togglePopup
+        },
     },
 
 }

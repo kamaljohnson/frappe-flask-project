@@ -71,16 +71,22 @@
 <script>
 
 export default {
-    setup() {
+    props: {
+        togglePopup: Function,
+        bookId: {
+            type: Number,
+            default: 0
+        },
     },
 
-    props: {
-        togglePopup: Function
+    mounted() {
+        this.temp_book_detail_id = this.bookId
+        this.findBookDetail()
     },
 
     data() {
         return {
-            temp_book_detail_id: "",
+            temp_book_detail_id: 0,
 
             create_new: true,
             exsisting: false,

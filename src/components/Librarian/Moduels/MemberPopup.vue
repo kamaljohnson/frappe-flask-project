@@ -67,7 +67,11 @@ export default {
     },
 
     props: {
-        togglePopup: Function
+        togglePopup: Function,
+        memberId: {
+            type: Number,
+            default: 0
+        }
     },
 
     data() {
@@ -84,6 +88,11 @@ export default {
                 "profilePic": "-",
             },
         }
+    },
+
+    mounted(){
+        this.temp_member_id = this.memberId
+        this.findMember()
     },
 
     methods: {

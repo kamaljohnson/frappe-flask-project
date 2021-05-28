@@ -1,5 +1,7 @@
 <template>
-    <div id='item'>
+    <div id='item'
+        @click="toggleMemberPopup"
+    >
         <img id='image' :src='this.profilePic' />
         <table id="info"> 
             <tbody> 
@@ -17,12 +19,22 @@
                 </tr>
             </tbody>
         </table>
+        <MemberPoup 
+            v-if="this.togglePopup"
+            v-bind:memberId="this.id"
+            v-bind:togglePopup="toggleMemberPopup"/>
     </div>
 </template>
 
 <script>
+import MemberPoup from '../Librarian/Moduels/MemberPopup.vue'
+
 export default {
     name: 'BookSearchResultItem',
+
+    components: {
+        MemberPoup
+    },
 
     props: {
         profilePic: String,
@@ -30,6 +42,19 @@ export default {
         username: String,
         unbilled: Number,
         booksTaken: Number,
+    },
+
+    
+    data() {
+        return {
+            togglePopup: false
+        }
+    },
+
+    methods: {
+        toggleMemberPopup() {
+            this.togglePopup = !this.togglePopup
+        },
     },
 
 }
