@@ -11,7 +11,8 @@
             placeholder="Search"
             v-model="this.search_word"
         />
-        <div id="search-body"
+        <div
+            id="search-filters"
             v-if="this.search_div_focused || this.search_bar_focused">
             <button class="filter-button"
                 v-bind:style="[
@@ -38,6 +39,22 @@
                 Memebers 
             </button>
         </div>
+        <div
+            id="search-result"
+            v-if="this.search_div_focused || this.search_bar_focused"
+        >
+            <div
+                v-if="this.book_results.length != 0"
+            > 
+                <h3> Books </h3>
+
+            </div>
+            <div
+                v-if="this.member_results.length != 0"
+            > 
+                <h3> Members </h3>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -61,7 +78,8 @@ export default {
             search_div_focused: false,
             search_bar_focused: false,
             
-            result: []      // holds search result items
+            book_results: [],
+            member_results: []
         }
     },
 
@@ -78,7 +96,7 @@ export default {
         },
         typing_flag: function(flag) {
             if(!flag && !this.user_typing) {
-                this.search(this.search_word)
+                this.search()
             }
         }
     },
@@ -96,11 +114,6 @@ export default {
         exitSearchBar(){
             this.search_bar_focused = false
         },
-        search(word){
-            if(this.search_word != '') {
-                console.log("search word: " + word + ' filters: books: ' + this.filters.books + ' members: ' + this.filters.members)
-            }
-        },
 
         toggelFilter(filter_name){
             switch(filter_name) {
@@ -114,8 +127,36 @@ export default {
                     console.log('this code should not be executed')
                     break;
             }
-            this.search(this.search_word)
-        }
+            this.search()
+        },
+
+        search(){
+            this.book_results = this.member_results = []
+            if(this.search_word != '') {
+                const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    search_word: this.search_word,
+                    filters: this.filters,
+                })
+                }
+                fetch('http://127.0.0.1:5000/search', requestOptions)
+                .then(res => res.json())
+                .then((data) => {
+                    console.log("data : " + data['result'])
+                    if(data['result']['members'] != null) {
+                        console.log('members: ' + data['result']['members'])
+                        this.book_results = data['result']['members']
+                    }
+                    if(data['result']['books'] != null) {
+                        console.log('books: ' + data['result']['books'])
+                        this.member_results = data['result']['books']
+                    }
+                })
+                .catch(err => console.log(err.message))
+            }
+        },
     }
 
 }
@@ -143,6 +184,11 @@ export default {
     padding-left: 12px;
     padding-right: 12px;
     float: right;
+}
+
+#search-result {
+    margin-left: 10px;
+    margin-top: 40px;
 }
 
 </style>
