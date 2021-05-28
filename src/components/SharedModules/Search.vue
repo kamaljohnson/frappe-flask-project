@@ -47,21 +47,58 @@
                 v-if="this.book_results.length != 0"
             > 
                 <h3> Books </h3>
-
+                <div
+                    v-if="this.book_results.length != 0"
+                > 
+                    <li id='book-results' 
+                        class="search-result-item"
+                        v-for="(value, index) in this.book_results" :key="index"
+                    >
+                        <books-search-result-item
+                            v-bind:imgSrc="value.img_src"
+                            v-bind:id="value.id"
+                            v-bind:bookName="value.name"
+                            v-bind:stock="value.stock"
+                        />
+                    </li>
+                </div>
             </div>
             <div
                 v-if="this.member_results.length != 0"
             > 
                 <h3> Members </h3>
+                <div
+                    v-if="this.member_results.length != 0"
+                > 
+                    <li id='member-results' 
+                        class="search-result-item"
+                        v-for="(value, index) in this.member_results" :key="index"
+                    >
+                        <members-search-result-item
+                            v-bind:profilePic="value.profile_pic"
+                            v-bind:id="value.id"
+                            v-bind:username="value.username"
+                            v-bind:booksTaken="value.books_taken"
+                            v-bind:unbilled="value.unbilled"
+                        />
+                    </li>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import BooksSearchResultItem from './BooksSearchResultItem'
+import MembersSearchResultItem from './MembersSearchResultItem'
 
 export default {
     name: 'Search',
+
+    components: {
+        BooksSearchResultItem,
+        MembersSearchResultItem
+    },
     
     data() {
         return {
@@ -147,11 +184,11 @@ export default {
                     console.log("data : " + data['result'])
                     if(data['result']['members'] != null) {
                         console.log('members: ' + data['result']['members'])
-                        this.book_results = data['result']['members']
+                        this.member_results = data['result']['members']
                     }
                     if(data['result']['books'] != null) {
                         console.log('books: ' + data['result']['books'])
-                        this.member_results = data['result']['books']
+                        this.book_results = data['result']['books']
                     }
                 })
                 .catch(err => console.log(err.message))
@@ -187,8 +224,12 @@ export default {
 }
 
 #search-result {
-    margin-left: 10px;
+    margin: 10px;
     margin-top: 40px;
+}
+
+.search-result-item {
+    list-style: none;
 }
 
 </style>
