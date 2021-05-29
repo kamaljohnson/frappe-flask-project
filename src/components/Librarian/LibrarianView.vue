@@ -46,12 +46,6 @@ export default {
     return {
         menuContents: [
             {
-                'title': 'Profile',
-                'children':[],
-                'clickable': true,
-                'onClick': this.showProfileScreen
-            },
-            {
                 'title': 'Books',
                 'clickable': false,
                 'children':[ 
@@ -86,18 +80,6 @@ export default {
                 'children':[],
                 'clickable': true,
                 'onClick': this.toggleReportsPopup
-            },
-            {
-                'title': 'Notification',
-                'children':[],
-                'clickable': true,
-                'onClick': this.showNotificationsScreen
-            },
-            {
-                'title': 'Log Out',
-                'children':[],
-                'clickable': true,
-                'onClick': this.showLogoutPopup
             },
         ],
         acticeScreen: "Home",   // Screens : Home, Report, Books, Issued Books, Notifications, Profile, 
