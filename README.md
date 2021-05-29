@@ -5,6 +5,9 @@
 ## Home
 ![Home](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Home.jpg)
 
+## Search
+![Search](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Search.jpg)
+
 ## Download Reports
 ![Download Reports](https://github.com/kamaljohnson/frappe-flask-project-frontend/blob/main/res/Screenshot%20Reports%20Download.JPG)
 
